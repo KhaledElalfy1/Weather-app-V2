@@ -126,7 +126,7 @@ class WeatherModel
     {
       return 'assets/images/cloudy.png';
     }
-    else if (weatherStateName=='Light Rain'||weatherStateName=='Heavy Rain'||
+    else if (weatherStateName=='Light Rain'||weatherStateName=='Heavy rain'||
         weatherStateName=='Showers' || weatherStateName== 'Patchy rain possible' )
     {
       return 'assets/images/rainy.png';
