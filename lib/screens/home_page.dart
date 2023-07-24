@@ -9,7 +9,7 @@ import 'package:weather_app_v2/screens/statup_page.dart';
 import 'package:weather_app_v2/screens/weather_screen_v2.dart';
 
 import '../models/weather_model.dart';
-import '../providers/provider_model.dart';
+
 
 
 
