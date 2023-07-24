@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:weather_app_v2/cubit/weather_cubit.dart';
 import 'package:weather_app_v2/cubit/weather_state.dart';
-
 import 'package:weather_app_v2/screens/search_page.dart';
 import 'package:weather_app_v2/screens/statup_page.dart';
 import 'package:weather_app_v2/screens/weather_screen_v2.dart';
