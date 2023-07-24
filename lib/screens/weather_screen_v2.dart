@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 import '../component/weather_column.dart';
 import '../component/weather_row.dart';
 import '../helpers/constats.dart';
 import '../models/weather_model.dart';
-import '../providers/provider_model.dart';
 
-class WeatherScreenV2 extends StatefulWidget {
-  const WeatherScreenV2({super.key});
 
-  @override
-  State<WeatherScreenV2> createState() => _WeatherScreenV2State();
-}
 
-class _WeatherScreenV2State extends State<WeatherScreenV2> {
-  WeatherModel?weatherData;
+
+class WeatherScreenV2 extends StatelessWidget {
+  final WeatherModel?weatherData;
   DateTime now = DateTime.now();
+
+  WeatherScreenV2({super.key,required this.weatherData});
 
   @override
   Widget build(BuildContext context) {
-    weatherData=Provider.of<ProviderModel>(context).weatherData;
+
     return  Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(

@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app_v2/cubit/weather_cubit.dart';
+import 'package:weather_app_v2/cubit/weather_state.dart';
 
 import 'package:weather_app_v2/screens/search_page.dart';
-import 'package:weather_app_v2/screens/weather_screen_v1.dart';
+import 'package:weather_app_v2/screens/statup_page.dart';
 import 'package:weather_app_v2/screens/weather_screen_v2.dart';
 
 import '../models/weather_model.dart';
 import '../providers/provider_model.dart';
 
-class HomePage extends StatefulWidget {
-   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
 
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
 
 WeatherModel?weatherData;
+
+  HomePage({super.key});
   @override
   Widget build(BuildContext context) {
-    weatherData=Provider.of<ProviderModel>(context).weatherData;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -32,29 +32,31 @@ WeatherModel?weatherData;
         ],
         title: const Text('Weather App',),
       ),
-      body:weatherData ==null ?
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("There's no weather 😔 start",
-              style: TextStyle(
-                fontSize: 25,
-              ),
 
-            ),
-            Text('Search Now 🔍',
-              style: TextStyle(
-                fontSize: 25,
-              ),
-            )
-          ],
+      body: BlocBuilder<WeatherCubit,WeatherStates>(builder: (context, state) {
+        if(state is WeatherLoading)
+          {
+            return const Center(child: CircularProgressIndicator(),);
+          }
+        else if(state is WeatherInital)
+          {
+            return const IntialScreen() ;
+          }
+        else if(state is WeatherFetch)
+          {
+            return  WeatherScreenV2(weatherData: state.weatherModel,);
+          }
+        else
+        {
+          return const Center(child: Text('Something went wrong please try again'),);
+        }
+
+      },
       ),
-        )
-          :
 
-         const WeatherScreenV2(),
+
     );
   }
 }
+
+
